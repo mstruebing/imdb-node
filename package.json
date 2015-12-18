@@ -1,0 +1,23 @@
+{
+  "name": "imdb-node",
+  "version": "1.0.0",
+  "description": "A Nodejs CLI to get imdb movie infos",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mstruebing/imdb-node.git"
+  },
+  "keywords": [
+    "imdb",
+    "cli"
+  ],
+  "author": "Max Struebing",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mstruebing/imdb-node/issues"
+  },
+  "homepage": "https://github.com/mstruebing/imdb-node#readme"
+}
