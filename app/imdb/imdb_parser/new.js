@@ -1,17 +1,13 @@
 import cheerio from 'cheerio';
 
 export function getRatingNew($) {
-  let rating;
-  $('span[itemprop=ratingValue]').filter(function(){
-    rating = $(this).text().trim();
-  })
-  return rating;
+  return $('span[itemprop=ratingValue]').text().trim();
 }
 
 export function getShortPlotNew($) {
-  let shortPlot;
-  $('div.summary_text[itemprop=description]').filter(function(){
-    shortPlot = $(this).text().trim();
-  })
-  return shortPlot;
+  return $('div.summary_text[itemprop=description]').text().trim();
+}
+
+export function getYearNew($) {
+  return $('#titleYear a').text().trim();
 }

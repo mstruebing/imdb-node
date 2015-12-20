@@ -1,17 +1,13 @@
 import cheerio from 'cheerio';
 
 export function getRatingOld($) {
-  let rating;
-  $('.star-box-giga-star').filter(function(){
-    rating = $(this).text().trim();
-  })
-  return rating;
+  return $('.star-box-giga-star').text().trim();
 }
 
 export function getShortPlotOld($) {
-  let shortPlot;
-  $('p[itemprop=description]').filter(function(){
-    shortPlot = $(this).text().trim();
-  })
-  return shortPlot;
+  return $('p[itemprop=description]').text().trim();
+}
+
+export function getYearOld($) {
+  return $('h1.header span.nobr a').text().trim();
 }
