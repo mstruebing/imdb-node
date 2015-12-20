@@ -1,7 +1,6 @@
 export function parseID(link) {
-  const regex = /tt[0-9]{7}$/;
   const regexLink = /tt[0-9]{7}\//;
-
+  const regex = /tt[0-9]{7}$/;
 
   if (link.match(regexLink)) {
     const match = link.match(regexLink)[0];

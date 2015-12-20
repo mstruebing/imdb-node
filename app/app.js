@@ -9,9 +9,8 @@ function printUsage() {
 
 function parseArguments(args) {
   if (args.length != 0) {
-    console.log(getMovieInfos(args[0]));
+    getMovieInfos(args[0]);
   }
 }
 
 parseArguments(process.argv.slice(2));
-printUsage();
