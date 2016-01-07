@@ -1,5 +1,3 @@
-import cheerio from 'cheerio';
-
 export function getRatingOld($) {
   return $('.star-box-giga-star').text().trim();
 }

@@ -9,8 +9,16 @@ function printUsage() {
 
 function parseArguments(args) {
   if (args.length != 0) {
-    getMovieInfos(args[0]);
+    getMovieInfos(args[0]).then(value => {
+      console.log(value);
+    }).catch(error => {
+      console.log(error);
+    })
   }
 }
 
-parseArguments(process.argv.slice(2));
+if (process.argv.length === 3) {
+  parseArguments(process.argv.slice(2));
+} else {
+  printUsage();
+}

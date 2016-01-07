@@ -1,5 +1,3 @@
-import cheerio from 'cheerio';
-
 export function getRatingNew($) {
   return $('span[itemprop=ratingValue]').text().trim();
 }
