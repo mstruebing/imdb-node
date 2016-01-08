@@ -1,7 +1,7 @@
 const request = require('request');
 import { getMovieInfos } from './imdb/index';
 import { parseID } from './imdb/id_parser';
-import { isInDatabase, save } from './database/index';
+import { getMovieFromDB, save } from './database/index';
 
 function printUsage() {
   console.log('imdb-node ARGUMENT');
@@ -12,13 +12,18 @@ function printUsage() {
 function parseArguments(args) {
   if (args.length != 0) {
     const id = parseID(args[0]);
-    if (id && !isInDatabase(id)) {
-      getMovieInfos(args[0]).then(value => {
+    let movie = false;
+    if (id) {
+      movie = getMovieFromDB(id).then((value) => {
         console.log(value);
-        save(value);
       }).catch(error => {
-        console.log(error);
-      })
+        getMovieInfos(id).then(value => {
+          console.log(value);
+          save(value);
+        }).catch(error => {
+          console.log(error);
+        })
+      });
     }
   }
 }
