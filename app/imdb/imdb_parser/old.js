@@ -1,11 +1,11 @@
 export function getRatingOld($) {
-  return $('.star-box-giga-star').text().trim();
+	return $('.star-box-giga-star').text().trim();
 }
 
 export function getShortPlotOld($) {
-  return $('p[itemprop=description]').text().trim();
+	return $('p[itemprop=description]').text().trim();
 }
 
 export function getYearOld($) {
-  return $('h1.header span.nobr a').text().trim();
+	return $('h1.header span.nobr a').text().trim();
 }
