@@ -10,7 +10,8 @@ import mongoose from 'mongoose';
  */
 const movieSchema = mongoose.Schema({
 	_id: String,
-	title: String,
+	originalTitle: String,
+	localeTitle: String,
 	year: Number,
 	rating: Number,
 	shortPlot: String

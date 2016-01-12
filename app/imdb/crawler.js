@@ -3,7 +3,7 @@ import cheerio from 'cheerio';
 
 import {parseID} from './id_parser';
 import {getRatingNew, getShortPlotNew, getYearNew} from './imdb_parser/new';
-import {getRatingOld, getShortPlotOld, getYearOld} from './imdb_parser/old';
+import {getLocaleTitleOld, getOriginalTitleOld, getRatingOld, getShortPlotOld, getYearOld} from './imdb_parser/old';
 
 /**
  * crawls the movie and generates the json
@@ -18,9 +18,11 @@ export function getMovie(link) {
 			}
 			return res.text();
 		}).then(body => {
-			const json = {_id: parseID(link), title: '', year: '', rating: '', shortPlot: ''};
+			const json = {_id: parseID(link), originalTitle: '', localeTitle: '', year: '', rating: '', shortPlot: ''};
 			const $ = cheerio.load(body);
 
+			json.originalTitle = getOriginalTitleOld($);
+			json.localeTitle = getLocaleTitleOld($);
 			json.rating = getRatingOld($) || getRatingNew($);
 			json.shortPlot = getShortPlotOld($) || getShortPlotNew($);
 			json.year = getYearOld($) || getYearNew($);
