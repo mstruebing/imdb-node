@@ -76,3 +76,12 @@ export function getMovieFromDB(id) {
 		});
 	});
 }
+
+/**
+ * deletes all movies in the database
+ */
+export function dropCollection() {
+	const db = dbConnect();
+	Movie.collection.remove();
+	dbClose(db);
+}

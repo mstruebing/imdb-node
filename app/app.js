@@ -1,14 +1,12 @@
 import {getMovieInfos} from './imdb/index';
 import {parseID} from './imdb/id_parser';
-import {getMovieFromDB, save} from './database/index';
+import {getMovieFromDB, save, dropCollection} from './database/index';
 
 /**
  * prints the usage
  */
 function printUsage() {
-	console.log('imdb-node ARGUMENT');
-	console.log('WHERE');
-	console.log('  Argument is the imdb-id or link');
+	console.log('imdb-node <imdb-link|imdb-id>|<delete>');
 }
 
 /**
@@ -16,7 +14,7 @@ function printUsage() {
  * @param  {Array} args the arguments
  */
 function parseArguments(args) {
-	if (args.length !== 0) {
+	if (args.length !== 0 && args[0] !== 'delete') {
 		const id = parseID(args[0]);
 		if (id) {
 			getMovieFromDB(id).then((value) => {
@@ -29,7 +27,12 @@ function parseArguments(args) {
 					console.log(error);
 				});
 			});
+		} else {
+			console.error('ERROR: not a valid imdb id or link');
+			printUsage();
 		}
+	} else if (args[0] === 'delete') {
+		dropCollection();
 	}
 }
 
