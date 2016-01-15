@@ -11,6 +11,20 @@ function printUsage() {
 }
 
 /**
+ * Prints the movie attributes
+ * @param  {JSON} movie the movie to print
+ */
+function printMovie(movie) {
+	console.log('id:', movie.id);
+	console.log('original title:', movie.originalTitle);
+	console.log('locale title:', movie.localeTitle);
+	console.log('genre:', movie.genre.join(', '));
+	console.log('year:', movie.year);
+	console.log('rating:', movie.rating);
+	console.log('short plot:', movie.shortPlot);
+}
+
+/**
  * parses the arguments and invokes the needed functions
  * @param  {Array} args the arguments
  */
@@ -19,23 +33,11 @@ function parseArguments(args) {
 		const id = parseID(args[0]);
 		if (id) {
 			getMovieFromDB(id).then((value) => {
-				console.log('id:', value[0].id);
-				console.log('original title:', value[0].originalTitle);
-				console.log('locale title:', value[0].localeTitle);
-				console.log('genre:', value[0].genre.join(', '));
-				console.log('year:', value[0].year);
-				console.log('rating:', value[0].rating);
-				console.log('short plot:', value[0].shortPlot);
+				printMovie(value[0]);
 			}).catch(() => {
 				getMovieInfos(id).then(value => {
 					save(value);
-					console.log('id:', value.id);
-					console.log('original title:', value.originalTitle);
-					console.log('locale title:', value.localeTitle);
-					console.log('genre:', value.genre.join(', '));
-					console.log('year:', value.year);
-					console.log('rating:', value.rating);
-					console.log('short plot:', value.shortPlot);
+					printMovie(value);
 				}).catch(error => {
 					console.log(error);
 				});
