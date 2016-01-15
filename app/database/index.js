@@ -12,6 +12,7 @@ const movieSchema = mongoose.Schema({
 	_id: String,
 	originalTitle: String,
 	localeTitle: String,
+	genre: Array,
 	year: Number,
 	rating: Number,
 	shortPlot: String

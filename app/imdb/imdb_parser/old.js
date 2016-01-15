@@ -20,3 +20,11 @@ export function getOriginalTitleOld($) {
 export function getLocaleTitleOld($) {
 	return $('h1.header span.itemprop[itemprop=name]').text().trim();
 }
+
+export function getGenreOld($) {
+	let genres = [];
+	$('span.itemprop[itemprop=genre]').each(function (i) {
+		genres[i] = $(this).text().trim();
+	});
+	return genres;
+}
