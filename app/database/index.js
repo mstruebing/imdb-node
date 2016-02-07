@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import random from 'mongoose-random';
 
 /**
  * The schema of a movie
@@ -18,8 +19,14 @@ const movieSchema = mongoose.Schema({
 	shortPlot: String
 });
 
+movieSchema.plugin(random, { path: 'r' });
+
 movieSchema.static('findById', function (id, callback) {
 	return this.find({_id: id}, callback);
+});
+
+movieSchema.static('findByGenre', function (genre, callback) {
+	return this.find({genre: genre}, callback);
 });
 
 const Movie = mongoose.model('Movie', movieSchema);
@@ -62,7 +69,6 @@ export function save(movieJSON) {
 
 /**
  * gets the movie from the database
- * @param  {string} id the imdb id
  * @return {Promise} a promise with the movie infos
  */
 export function getMovieFromDB(id) {
@@ -76,6 +82,25 @@ export function getMovieFromDB(id) {
 				reject(err);
 			}
 		});
+	});
+}
+
+/**
+ * gets the movie from the database
+ * @param  {string} id the imdb id
+ * @return {Promise} a promise with the movie infos
+ */
+export function getRandomMovieFromDB() {
+	return new Promise((resolve, reject) => {
+		const db = dbConnect();
+    Movie.findRandom().limit(1).exec((err, movie) => {
+      dbClose(db);
+			if (!err && movie.length > 0) {
+				resolve(movie);
+			} else {
+				reject(err);
+			}
+    });
 	});
 }
 

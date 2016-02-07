@@ -8,7 +8,7 @@ import {getLocaleTitleOld, getOriginalTitleOld, getGenreOld, getRatingOld, getSh
 /**
  * crawls the movie and generates the json
  * @param  {string} link the imdb link to crawl
- * @return {Promise} a promise with resolves with the json
+ * @return {Promise} a promise which resolves with the json
  */
 export function getMovie(link) {
 	return new Promise((resolve, reject) => {

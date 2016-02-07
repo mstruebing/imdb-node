@@ -17,18 +17,18 @@ describe('imdb', () => {
 
 	it('extracts the id', () => {
 		expect(parseID(prefix + zeroFill(0))).to.equal('tt' + zeroFill(0));
-    expect(parseID(prefix + zeroFill(-1))).to.equal(null);
-    expect(parseID(prefix + zeroFill(888888888))).to.equal(null);
-    expect(parseID('aaa')).to.equal(null);
-    expect(parseID('')).to.equal(null);
-    expect(parseID('http://www.imdb.com/title/tt4046784/')).to.equal('tt4046784');
+		expect(parseID(prefix + zeroFill(-1))).to.equal(null);
+		expect(parseID(prefix + zeroFill(888888888))).to.equal(null);
+		expect(parseID('aaa')).to.equal(null);
+		expect(parseID('')).to.equal(null);
+		expect(parseID('http://www.imdb.com/title/tt4046784/')).to.equal('tt4046784');
 
-    for (var i = 0; i < 10; i++) {
+		for (var i = 0; i < 10; i++) {
       const id = 'tt' + zeroFill(Math.round(Math.random() * 10000));
       expect(parseID(zeroFill(id))).to.equal(id);
     }
 
-    for (var i = 0; i < 10; i++) {
+		for (var i = 0; i < 10; i++) {
       const id = 'tt' + zeroFill(Math.round(Math.random() * 100000));
       expect(parseID(zeroFill(id))).to.equal(id);
     }
