@@ -2,7 +2,7 @@ import fetch from 'node-fetch';
 import cheerio from 'cheerio';
 
 import {parseID} from './id_parser';
-import {getRatingNew, getShortPlotNew, getYearNew} from './imdb_parser/new';
+import {getRatingNew, getShortPlotNew, getYearNew, getLocaleTitleNew, getOriginalTitleNew} from './imdb_parser/new';
 import {getLocaleTitleOld, getOriginalTitleOld, getGenreOld, getRatingOld, getShortPlotOld, getYearOld} from './imdb_parser/old';
 
 /**
@@ -21,8 +21,8 @@ export function getMovie(link) {
 			const json = {_id: parseID(link), originalTitle: '', localeTitle: '', genre: '', year: '', rating: '', shortPlot: ''};
 			const $ = cheerio.load(body);
 
-			json.originalTitle = getOriginalTitleOld($);
-			json.localeTitle = getLocaleTitleOld($);
+			json.originalTitle = getOriginalTitleOld($) || getOriginalTitleNew($);
+			json.localeTitle = getLocaleTitleOld($) || getLocaleTitleNew($);
 			json.rating = getRatingOld($) || getRatingNew($);
 			json.shortPlot = getShortPlotOld($) || getShortPlotNew($);
 			json.year = getYearOld($) || getYearNew($);

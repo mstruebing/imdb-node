@@ -47,7 +47,7 @@ function getMovie(id) {
 }
 
 /**
- * gets the movie either from db or live page and saves it to database
+ * gets a random movie from database
  * @param  {Integer} id the imdb id
  */
 function getRandomMovie() {
@@ -79,8 +79,6 @@ function parseArguments(args) {
 				default: break;
 			}
 		});
-		console.log(genre);
-		console.log(minRating);
 	} else {
 		getMovie(id);
 	}
